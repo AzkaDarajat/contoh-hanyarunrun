@@ -1,0 +1,4 @@
+package com.example.hanyarunrun.data;
+
+public class UserEntity {
+}

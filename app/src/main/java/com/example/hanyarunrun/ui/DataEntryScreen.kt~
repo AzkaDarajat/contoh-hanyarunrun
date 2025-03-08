@@ -88,33 +88,34 @@ fun DataEntryScreen(navController: NavHostController, viewModel: DataViewModel) 
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier.fillMaxWidth()
             )
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                Button(
-                    onClick = {
-                        viewModel.insertData(
-                            kodeProvinsi, namaProvinsi, kodeKabupatenKota, namaKabupatenKota, total, satuan, tahun
-                        )
-                        Toast.makeText(context, "Data berhasil ditambahkan!", Toast.LENGTH_SHORT).show()
-                        navController.navigate("list")
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text("Submit Data")
-                }
-
-                Button(
-                    onClick = { navController.popBackStack() },
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = androidx.compose.material3.ButtonDefaults.buttonColors(
-                        containerColor = Color.Red
+            Button(
+                onClick = {
+                    // Memanggil fungsi insertData pada ViewModel
+                    viewModel.insertData(
+                        kodeProvinsi = kodeProvinsi,
+                        namaProvinsi = namaProvinsi,
+                        kodeKabupatenKota = kodeKabupatenKota,
+                        namaKabupatenKota = namaKabupatenKota,
+                        total = total,
+                        satuan = satuan,
+                        tahun = tahun
                     )
-                ) {
-                    Text("Batal", color = Color.White)
-                }
+                    Toast.makeText(context, "Data berhasil ditambahkan!", Toast.LENGTH_SHORT).show()
+                    // Navigasi ke tampilan daftar data
+                    navController.navigate("list")
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Submit Data")
             }
         }
+        Button(
+            onClick = {
+                navController.popBackStack()
+            },
+            modifier = Modifier.wrapContentWidth().wrapContentHeight()
+        ) {
+            Text("Batal")
+    }
     }
 }

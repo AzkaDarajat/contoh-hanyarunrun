@@ -1,0 +1,25 @@
+package com.example.hanyarunrun.data
+
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+interface DataJabarApiService {
+    @GET("od_21012_tingkat_pengangguran_terbuka__semester_prov_di_ind")
+//    suspend fun getDataJabar(@Query("page") page: Int): PengangguranResponse
+    suspend fun getDataJabar(apiService: DataJabarApiService): List<PengangguranResponse> {
+        val allData = mutableListOf<PengangguranResponse>()
+        var currentPage = getDataJabar()
+
+        while (true) {
+            val response = apiService.getDataJabar(currentPage)
+            val data = response
+
+            if (data.isNullOrEmpty()) break  // Jika tidak ada data lagi, hentikan looping
+
+            allData.addAll(data)
+            currentPage++  // Pindah ke halaman berikutnya
+        }
+
+        return allData
+    }
+}

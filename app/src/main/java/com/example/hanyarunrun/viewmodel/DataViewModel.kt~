@@ -75,6 +75,16 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun getUser(nim: String): LiveData<UserEntity> {
+        return dao.getUser(nim)
+    }
+
+    fun upsert(user: UserEntity) {
+        viewModelScope.launch {
+            dao.insertUser(user)
+        }
+    }
+
     fun fetchPengangguran(page: Int = 1) {
         viewModelScope.launch {
             _isLoading.value = true

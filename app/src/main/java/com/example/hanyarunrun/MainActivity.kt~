@@ -23,20 +23,20 @@ class MainActivity : ComponentActivity() {
 }
 
 
-//@Composable
-//fun MainScreen() {
-//    val navController = rememberNavController()
-//
-//    Scaffold(
-//        bottomBar = { BottomNavigationBar(navController) }
-//    ) { padding ->
-//        NavHost(
-//            navController = navController,
-//            startDestination = "pengangguran"
-//        ) {
-//            composable("pengangguran") { PengangguranScreen(navController) }
-//            composable("profile") { ProfileScreen(navController) }
-//        }
-//    }
-//}
+@Composable
+fun MainScreen() {
+    val navController = rememberNavController()
+
+    Scaffold(
+        bottomBar = { BottomNavigationBar(navController) }
+    ) { padding ->
+        NavHost(
+            navController = navController,
+            startDestination = "pengangguran"
+        ) {
+            composable("pengangguran") { PengangguranScreen(navController) }
+            composable("profile") { ProfileScreen(navController) }
+        }
+    }
+}
 

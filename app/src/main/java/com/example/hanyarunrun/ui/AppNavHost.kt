@@ -6,18 +6,28 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.hanyarunrun.ui.ProfileScreen
 import com.example.hanyarunrun.viewmodel.DataViewModel
 
 @Composable
 fun AppNavHost(viewModel: DataViewModel) {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "form") {
+    NavHost(navController = navController, startDestination = "home") {
         composable("form") {
             DataEntryScreen(navController = navController, viewModel = viewModel)
         }
         composable("list") {
             DataListScreen(navController = navController, viewModel = viewModel)
+        }
+        composable("home") {
+            HomeScreen(navController = navController, viewModel = viewModel)
+        }
+        composable("pengangguran") {
+            PengangguranScreen(navController = navController, viewModel = viewModel)
+        }
+        composable("profile") {
+            ProfileScreen(navController = navController, viewModel = viewModel)
         }
         composable(
             route = "edit/{id}",
